@@ -81,6 +81,7 @@ angular.module('slidePushMenu', [])
                     elem.attr('style', positionFix);
                     if (attrs.button) {
                         var btn = elem.find('.spmenu-button').addClass('show');
+                        btn.append('<i class="' + attrs.buttonIconClass + '"></i>')
                         if (attrs.button === 'slide') {
                             $document.mouseup(function (e) {
                                 if (!elem.is(e.target) && elem.has(e.target).length === 0 && elem.hasClass('spmenu-open')){
@@ -190,7 +191,7 @@ angular.module('slidePushMenu', [])
             priority: 500,
             restrict: 'E',
             replace: true,
-            template: '<nav><a class="spmenu-button"><span class="glyphicon glyphicon-cog"></span></a></nav>',
+            template: '<nav><a class="spmenu-button"></a></nav>',
             transclude: 'element'
         });
 
