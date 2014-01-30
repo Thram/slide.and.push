@@ -188,7 +188,6 @@ angular.module('slidePushMenu', [])
 
         return({
             compile: compile,
-            priority: 500,
             restrict: 'E',
             replace: true,
             template: '<nav><a class="spmenu-button"></a></nav>',
