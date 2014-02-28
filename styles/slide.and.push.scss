@@ -1,0 +1,272 @@
+/* General styles for all menus */
+@import "variables";
+
+.spmenu {
+  background: $menu-background-color;
+  position: fixed;
+  &.spmenu-open {
+    -moz-box-shadow: -20px 0px 30px $shadow-color;
+    -webkit-box-shadow: -20px 0px 30px $shadow-color;
+    box-shadow: -20px 0px 30px $shadow-color;
+  }
+  h3 {
+    color: $title-font-color;
+    font-size: 1.9em;
+    padding: 18px;
+    margin: 0;
+    font-weight: 300;
+    background: $title-background-color;
+    text-align: center;
+    border-bottom: 4px double $item-separator-color;
+  }
+  h4 {
+    color: $title-font-color;
+  }
+  a, label {
+    display: block;
+    color: $lbl-font-color;
+    font-size: 1.1em;
+    font-weight: 300;
+    &:hover {
+      background: $lbl-hover-background-color;
+    }
+    &:active {
+      background: $lbl-active-background-color;
+      color: $lbl-active-font-color;
+    }
+    span {
+      color: $lbl-font-color;
+    }
+    input {
+      margin: 5px 10px 0 0 !important;
+    }
+  }
+}
+
+/* Button */
+a.spmenu-button {
+  display: none;
+  position: absolute;
+  border: none;
+  font-size: 25px;
+  text-align: center;
+  padding: 10px;
+  background: $btn-background-color;
+  color: $btn-font-color;
+  text-decoration: none;
+  -moz-box-shadow: -8px 4px 10px $shadow-color;
+  -webkit-box-shadow: -8px 4px 10px $shadow-color;
+  box-shadow: -8px 4px 10px $shadow-color;
+  border: none !important;
+  &.show {
+    display: block;
+  }
+  &.active {
+    background: $lbl-active-background-color;
+    color: $lbl-active-font-color;
+    i, span {
+      color: $caret-color-opened;
+    }
+    .caret {
+      border-bottom: 4px solid transparent;
+      border-top: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-left: 4px solid $caret-color-opened;
+      display: inline-block;
+      height: 0;
+      opacity: 1;
+      vertical-align: top;
+      width: 0;
+    }
+  }
+
+  .caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid $caret-color-closed;
+    display: inline-block;
+    height: 0;
+    opacity: 1;
+    vertical-align: top;
+    width: 0;
+    margin: 6px;
+  }
+}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.spmenu-vertical {
+  width: $spmenu-vertical-width;
+  height: 100%;
+  top: 0;
+  z-index: 1000;
+  a, label {
+    padding: 0;
+  }
+  hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid $item-separator-color;
+  }
+  .menu-item-actions, .menu-item-edit-actions {
+    margin-top: 10px;
+    a {
+      display: inline;
+    }
+    i{
+      color: $item-separator-color;
+    }
+    .menu-item-action-separator {
+      color: $item-separator-color;
+      display: inline-block;
+      position: relative;
+      top: -2px;
+      margin: 0 5px;
+    }
+  }
+}
+
+.spmenu-horizontal {
+  width: 100%;
+  height: $spmenu-horizontal-height;
+  left: 0;
+  z-index: 1000;
+  /*overflow: hidden;*/
+  h3 {
+    height: 100%;
+    width: 20%;
+    float: left;
+  }
+  a, label {
+    float: left;
+    width: 20%;
+    padding: 0.8em;
+  }
+  hr {
+    margin: 0;
+    border: 0;
+    border-left: 1px solid $item-separator-color;
+  }
+}
+
+/* Vertical menu that slides from the left or right */
+
+.spmenu-left {
+  left: -$spmenu-vertical-width;
+  border-right: 1px solid $borders-color;
+  a.spmenu-button {
+    left: $spmenu-vertical-width;
+    top: 10px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+.spmenu-right {
+  right: -$spmenu-vertical-width;
+  border-left: 1px solid $borders-color;
+  a.spmenu-button {
+    right: $spmenu-vertical-width;
+    top: 10px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+}
+
+/* Horizontal menu that slides from the top or bottom */
+
+.spmenu-top {
+  top: -$spmenu-horizontal-height;
+  border-bottom: 1px solid $borders-color;
+  a.spmenu-button {
+    left: 10px;
+    top: $spmenu-horizontal-height;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+}
+
+.spmenu-bottom {
+  bottom: -$spmenu-horizontal-height;
+  border-top: 1px solid $borders-color;
+  a.spmenu-button {
+    left: 10px;
+    bottom: $spmenu-horizontal-height;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+}
+
+/* Push classes applied to the body */
+
+.spmenu-push {
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+}
+
+.spmenu-push-toright {
+  left: $spmenu-vertical-width;
+}
+
+.spmenu-push-toleft {
+  left: -$spmenu-vertical-width;
+}
+
+/* Transitions */
+
+.spmenu, .spmenu-push {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Example media queries
+
+@media screen and (max-width: 55.1875em) {
+  .spmenu-horizontal {
+    font-size: 75%;
+    height: 110px;
+  }
+  .spmenu-top {
+    top: -110px;
+  }
+  .spmenu-bottom {
+    bottom: -110px;
+  }
+}
+
+@media screen and (max-height: 26.375em) {
+  .spmenu-vertical {
+    font-size: 90%;
+    width: 190px;
+  }
+  .spmenu-left, .spmenu-push-toleft {
+    left: -190px;
+  }
+  .spmenu-right {
+    right: -190px;
+  }
+  .spmenu-push-toright {
+    left: 190px;
+  }
+}
+
+*/

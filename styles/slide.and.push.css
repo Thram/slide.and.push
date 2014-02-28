@@ -1,0 +1,226 @@
+/* General styles for all menus */
+.spmenu {
+  background: #65cff0;
+  position: fixed; }
+  .spmenu.spmenu-open {
+    -moz-box-shadow: -20px 0px 30px black;
+    -webkit-box-shadow: -20px 0px 30px black;
+    box-shadow: -20px 0px 30px black; }
+  .spmenu h3 {
+    color: black;
+    font-size: 1.9em;
+    padding: 18px;
+    margin: 0;
+    font-weight: 300;
+    background: #06c0f2;
+    text-align: center;
+    border-bottom: 4px double white; }
+  .spmenu h4 {
+    color: black; }
+  .spmenu a, .spmenu label {
+    display: block;
+    color: black;
+    font-size: 1.1em;
+    font-weight: 300; }
+    .spmenu a:hover, .spmenu label:hover {
+      background: #65cff0; }
+    .spmenu a:active, .spmenu label:active {
+      background: #65cff0;
+      color: black; }
+    .spmenu a span, .spmenu label span {
+      color: black; }
+    .spmenu a input, .spmenu label input {
+      margin: 5px 10px 0 0 !important; }
+
+/* Button */
+a.spmenu-button {
+  display: none;
+  position: absolute;
+  border: none;
+  font-size: 25px;
+  text-align: center;
+  padding: 10px;
+  background: #06c0f2;
+  color: black;
+  text-decoration: none;
+  -moz-box-shadow: -8px 4px 10px black;
+  -webkit-box-shadow: -8px 4px 10px black;
+  box-shadow: -8px 4px 10px black;
+  border: none !important; }
+  a.spmenu-button.show {
+    display: block; }
+  a.spmenu-button.active {
+    background: #65cff0;
+    color: black; }
+    a.spmenu-button.active i, a.spmenu-button.active span {
+      color: black; }
+    a.spmenu-button.active .caret {
+      border-bottom: 4px solid transparent;
+      border-top: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-left: 4px solid black;
+      display: inline-block;
+      height: 0;
+      opacity: 1;
+      vertical-align: top;
+      width: 0; }
+  a.spmenu-button .caret {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid black;
+    display: inline-block;
+    height: 0;
+    opacity: 1;
+    vertical-align: top;
+    width: 0;
+    margin: 6px; }
+
+/* Orientation-dependent styles for the content of the menu */
+.spmenu-vertical {
+  width: 320px;
+  height: 100%;
+  top: 0;
+  z-index: 1000; }
+  .spmenu-vertical a, .spmenu-vertical label {
+    padding: 0; }
+  .spmenu-vertical hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid white; }
+  .spmenu-vertical .menu-item-actions, .spmenu-vertical .menu-item-edit-actions {
+    margin-top: 10px; }
+    .spmenu-vertical .menu-item-actions a, .spmenu-vertical .menu-item-edit-actions a {
+      display: inline; }
+    .spmenu-vertical .menu-item-actions i, .spmenu-vertical .menu-item-edit-actions i {
+      color: white; }
+    .spmenu-vertical .menu-item-actions .menu-item-action-separator, .spmenu-vertical .menu-item-edit-actions .menu-item-action-separator {
+      color: white;
+      display: inline-block;
+      position: relative;
+      top: -2px;
+      margin: 0 5px; }
+
+.spmenu-horizontal {
+  width: 100%;
+  height: 150px;
+  left: 0;
+  z-index: 1000;
+  /*overflow: hidden;*/ }
+  .spmenu-horizontal h3 {
+    height: 100%;
+    width: 20%;
+    float: left; }
+  .spmenu-horizontal a, .spmenu-horizontal label {
+    float: left;
+    width: 20%;
+    padding: 0.8em; }
+  .spmenu-horizontal hr {
+    margin: 0;
+    border: 0;
+    border-left: 1px solid white; }
+
+/* Vertical menu that slides from the left or right */
+.spmenu-left {
+  left: -320px;
+  border-right: 1px solid #65cff0; }
+  .spmenu-left a.spmenu-button {
+    left: 320px;
+    top: 10px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px; }
+
+.spmenu-right {
+  right: -320px;
+  border-left: 1px solid #65cff0; }
+  .spmenu-right a.spmenu-button {
+    right: 320px;
+    top: 10px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px; }
+
+/* Horizontal menu that slides from the top or bottom */
+.spmenu-top {
+  top: -150px;
+  border-bottom: 1px solid #65cff0; }
+  .spmenu-top a.spmenu-button {
+    left: 10px;
+    top: 150px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px; }
+
+.spmenu-bottom {
+  bottom: -150px;
+  border-top: 1px solid #65cff0; }
+  .spmenu-bottom a.spmenu-button {
+    left: 10px;
+    bottom: 150px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    border-top-left-radius: 5px; }
+
+/* Push classes applied to the body */
+.spmenu-push {
+  overflow-x: hidden;
+  position: relative;
+  left: 0; }
+
+.spmenu-push-toright {
+  left: 320px; }
+
+.spmenu-push-toleft {
+  left: -320px; }
+
+/* Transitions */
+.spmenu, .spmenu-push {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+
+/* Example media queries
+
+@media screen and (max-width: 55.1875em) {
+  .spmenu-horizontal {
+    font-size: 75%;
+    height: 110px;
+  }
+  .spmenu-top {
+    top: -110px;
+  }
+  .spmenu-bottom {
+    bottom: -110px;
+  }
+}
+
+@media screen and (max-height: 26.375em) {
+  .spmenu-vertical {
+    font-size: 90%;
+    width: 190px;
+  }
+  .spmenu-left, .spmenu-push-toleft {
+    left: -190px;
+  }
+  .spmenu-right {
+    right: -190px;
+  }
+  .spmenu-push-toright {
+    left: 190px;
+  }
+}
+
+*/
