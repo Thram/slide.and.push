@@ -37,7 +37,9 @@ angular.module("slidePushMenu", []).factory('slidePush',function () {
         },
         slideForceClose: function (menu, btn) {
             if (menu.hasClass("spmenu-open")) {
-                btn.removeClass("active");
+                if (btn) {
+                    btn.removeClass("active");
+                }
                 if (menu.hasClass("spmenu-left")) {
                     menu.css("left", parseInt(menu.css("left")) - spmenuVerticalWidth);
                 }
@@ -118,7 +120,9 @@ angular.module("slidePushMenu", []).factory('slidePush',function () {
         pushForceClose: function (menu, btn) {
             var body, bodyLeft;
             if (menu.hasClass("spmenu-open")) {
-                btn.removeClass("active");
+                if (btn) {
+                    btn.removeClass("active");
+                }
                 body = angular.element("body");
                 if (menu.hasClass("spmenu-left")) {
                     bodyLeft = parseInt(body.css("left"));
@@ -152,6 +156,12 @@ angular.module("slidePushMenu", []).factory('slidePush',function () {
                     return elem.click(function () {
                         var menu;
                         menu = angular.element("#" + attrs.ngSlideMenu);
+                        angular.element(".spmenu-open").each(function(){
+                            if ( this.id != attrs.ngSlideMenu ) {
+                                var openMenu = angular.element(this);
+                                slidePush.slideForceClose(openMenu);
+                            }
+                        });
                         return slidePush.slide(menu, elem);
                     });
                 }
@@ -167,6 +177,12 @@ angular.module("slidePushMenu", []).factory('slidePush',function () {
                     body = angular.element("body");
                     body.addClass("spmenu-push");
                     return elem.click(function () {
+                        angular.element(".spmenu-open").each(function(){
+                            if ( this.id != attrs.ngPushMenu ) {
+                                var openMenu = angular.element(this);
+                                slidePush.pushForceClose(openMenu);
+                            }
+                        });
                         return slidePush.push(menu, elem);
                     });
                 }
@@ -174,13 +190,9 @@ angular.module("slidePushMenu", []).factory('slidePush',function () {
         }
     ]).directive("ngSlidePushMenu", [
         "$document", 'slidePush', function ($document, slidePush) {
-            var compile, link;
-            compile = function (elem, attrs, transclude) {
-                link.transclude = transclude;
-                return link;
-            };
-            link = function (scope, elem, attrs) {
-                return link.transclude(scope, function (clone) {
+            var link;
+            link = function (scope, elem, attrs, ctrl, transclude) {
+                transclude(scope, function (clone) {
                     var body, btn, buttonClass, buttonText, classes, positionFix;
                     classes = (attrs.spmClass ? attrs.spmClass : "");
                     classes += " spmenu spmenu-" + (attrs.position === "right" || attrs.position === "left" ? "vertical" : "horizontal") + " spmenu-" + attrs.position;
@@ -224,7 +236,7 @@ angular.module("slidePushMenu", []).factory('slidePush',function () {
                 });
             };
             return {
-                compile: compile,
+                link: link,
                 restrict: "E",
                 replace: true,
                 template: "<nav><a class=\"spmenu-button\"><i class=\"caret\"></i></a></nav>",
