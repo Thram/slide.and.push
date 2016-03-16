@@ -29,7 +29,8 @@ angular.module("slidePushMenu", []).factory("slidePush", [->
 
   slideForceClose: (menu, btn) ->
     if menu.hasClass("spmenu-open")
-      btn.removeClass "active"
+      if btn
+        btn.removeClass "active"
       menu.css "left", parseInt(menu.css("left")) - spmenuVerticalWidth  if menu.hasClass("spmenu-left")
       menu.css "right", parseInt(menu.css("right")) - spmenuVerticalWidth  if menu.hasClass("spmenu-right")
       menu.css "top", parseInt(menu.css("top")) - spmenuHorizontalHeight  if menu.hasClass("spmenu-top")
@@ -92,7 +93,8 @@ angular.module("slidePushMenu", []).factory("slidePush", [->
     body = undefined
     bodyLeft = undefined
     if menu.hasClass("spmenu-open")
-      btn.removeClass "active"
+      if btn
+        btn.removeClass "active"
       body = angular.element(document.querySelector("body"))
       if menu.hasClass("spmenu-left")
         bodyLeft = parseInt(body.css("left"))
@@ -120,6 +122,12 @@ angular.module("slidePushMenu", []).factory("slidePush", [->
         elem.click ->
           menu = undefined
           menu = angular.element(document.querySelector("#" + attrs.ngSlideMenu))
+          angular.element(".spmenu-open").each ->
+            unless @id is attrs.ngSlideMenu
+              openMenu = angular.element(this)
+              slidePush.slideForceClose openMenu
+            return
+
           slidePush.slide menu, elem
 
     )
@@ -132,9 +140,19 @@ angular.module("slidePushMenu", []).factory("slidePush", [->
         body = undefined
         menu = undefined
         menu = angular.element(document.querySelector("#" + attrs.ngPushMenu))
+        angular.element(".spmenu-open").each ->
+          unless @id is attrs.ngPushMenu
+            openMenu = angular.element(this)
+            slidePush.pushForceClose openMenu
+          return
         body = angular.element(document.querySelector("body"))
         body.addClass "spmenu-push"
         elem.click ->
+          angular.element(".spmenu-open").each ->
+            unless @id is attrs.ngPushMenu
+              openMenu = angular.element(this)
+              slidePush.pushForceClose openMenu
+            return
           slidePush.push menu, elem
 
     )
@@ -142,14 +160,10 @@ angular.module("slidePushMenu", []).factory("slidePush", [->
   "$document"
   "slidePush"
   ($document, slidePush) ->
-    compile = undefined
     link = undefined
-    compile = (elem, attrs, transclude) ->
-      link.transclude = transclude
-      link
 
-    link = (scope, elem, attrs) ->
-      link.transclude scope, (clone) ->
+    link = (scope, elem, attrs, ctrl, transclude) ->
+      transclude scope, (clone) ->
         body = undefined
         btn = undefined
         buttonClass = undefined
@@ -189,7 +203,7 @@ angular.module("slidePushMenu", []).factory("slidePush", [->
 
 
     return (
-      compile: compile
+      link: link
       restrict: "E"
       replace: true
       template: "<nav><a class=\"spmenu-button\"><i class=\"caret\"></i></a></nav>"

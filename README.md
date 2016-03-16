@@ -5,6 +5,8 @@ AngularJS Directive to make Slide and Push menus.
 
 Based on http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/
 
+Supports latest Angular i.e. Angular 1.2.26 and Angular 1.3.4
+
 ###Dependecies: jQuery
 
 ## Basic Usage
